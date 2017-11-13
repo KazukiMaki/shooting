@@ -22,8 +22,8 @@ int     score;          //!< スコア
 void Start()
 {
     cloudPos = Vector2(-320, 100);
-    cannonPos = Vector2(-80, -150);
-    targetRect = Rect(80, -140, 40, 40);
+    cannonPos = Vector2(-310, -150);
+    targetRect = Rect(280, -140, 40, 40);
     bulletPos.x = -999;
     score = 0;
 }
@@ -45,6 +45,16 @@ void Update()
         if (targetRect.Overlaps(bulletRect)) {
             score += 1;         // スコアの加算
             bulletPos.x = -999; // 弾を発射可能な状態に戻す
+        }
+    }
+    
+    // 雲の移動
+    if (cloudPos.x > -999) {
+        cloudPos.x += 100 * Time::deltaTime;
+        // 雲の移動判定
+        if (cloudPos.x >= 380) {
+            //雲を初期位置に戻す
+            cloudPos.x = -550;
         }
     }
 
