@@ -16,6 +16,8 @@ Vector2 cannonPos;      //!< 砲台の位置
 Vector2 bulletPos;      //!< 弾の位置
 Rect    targetRect;     //!< ターゲットの矩形
 int     score;          //!< スコア
+int     cannon;
+bool    cannonCan;
 
 
 // ゲーム開始時に呼ばれる関数です。
@@ -26,6 +28,8 @@ void Start()
     targetRect = Rect(280, -140, 40, 40);
     bulletPos.x = -999;
     score = 0;
+    cannon = 100;
+    cannonCan = true;
 }
 
 // 1/60秒ごとに呼ばれる関数です。モデルの更新と画面の描画を行います。
@@ -38,13 +42,19 @@ void Update()
 
     // 弾の移動
     if (bulletPos.x > -999) {
-        bulletPos.x += 10 * Time::deltaTime;
+        bulletPos.x += 200 * Time::deltaTime;
 
         // ターゲットと弾の当たり判定
         Rect bulletRect(bulletPos, Vector2(32, 20));
         if (targetRect.Overlaps(bulletRect)) {
             score += 1;         // スコアの加算
             bulletPos.x = -999; // 弾を発射可能な状態に戻す
+        }
+        
+        // ターゲットに当たらない場合
+        if (bulletPos.x >= 335) {
+            // 弾を発射可能な状態に戻す
+            bulletPos.x = -999;
         }
     }
     
@@ -74,6 +84,24 @@ void Update()
     FillRect(Rect(cannonPos.x-10, -140, 20, 100), Color::blue);
     DrawImage("cannon.png", cannonPos);
 
+
+    
+    // 砲台の移動
+    if (cannonPos.y <= -60 && cannonCan) {
+        cannonPos.y += cannon * Time::deltaTime;
+    }
+    if(cannonPos.y >= -60)
+    {
+        cannonCan = false;
+    }
+    if (cannonPos.y >= -160 && cannonCan == false) {
+        cannonPos.y -= cannon * Time::deltaTime;
+    }
+    if(cannonPos.y <= -160)
+    {
+        cannonCan = true;
+    }
+    
     // ターゲットの描画
     FillRect(targetRect, Color::red);
 
