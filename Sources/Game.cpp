@@ -1,6 +1,5 @@
 #include "Game.hpp"
 
-
 // TODO: 砲台の位置を画面左に、ターゲットの位置を画面右に移動させる。(A)
 // TODO: 雲の位置を左から右に動かす。見えなくなったら左端に戻す。(B)
 // TODO: 砲台を青い壁に沿って上下に動かす。(C)
@@ -16,8 +15,8 @@ Vector2 cannonPos;      //!< 砲台の位置
 Vector2 bulletPos;      //!< 弾の位置
 Rect    targetRect;     //!< ターゲットの矩形
 int     score;          //!< スコア
-int     cannon;
-bool    cannonCan;
+int     cannon;         //!< 砲台の速度
+bool    cannonCan;      //!< 砲台の判定
 
 
 // ゲーム開始時に呼ばれる関数です。
