@@ -53,7 +53,6 @@ void Update()
         // ターゲットと弾の当たり判定
         Rect bulletRect(bulletPos, Vector2(32, 20));
         if (targetRect.Overlaps(bulletRect)) {
-            score += 1;         // スコアの加算
             score += 100;         // スコアの加算
             bulletPos.x = -999; // 弾を発射可能な状態に戻す
             PlaySound("se_maoudamashii_system27.mp3");  // TODO: PlaySE()関数を使って、弾の発射時とターゲットに当たった時にSEを再生する。(H)
@@ -114,17 +113,12 @@ void Update()
     FillRect(targetRect, Color::red);
 
     // スコアの描画
-<<<<<<< HEAD
-    SetFont("nicoca_v1.ttf", 20.0f);
-    DrawText(FormatString("%02d", score), Vector2(-319, 199), Color::black);
-    DrawText(FormatString("%02d", score), Vector2(-320, 200), Color::white);
+//<<<<<<< HEAD
 
-    }
-
-=======
+//=======
     SetFont("nicoca_v1.ttf", 50.0f);
     DrawText(FormatString("%05d", score), Vector2(-319, 199), Color::black);
     DrawText(FormatString("%05d", score), Vector2(-320, 200), Color::white);
 }
->>>>>>> shooting/HW16A062
+//>>>>>>> shooting/HW16A062
 
