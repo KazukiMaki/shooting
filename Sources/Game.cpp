@@ -26,7 +26,9 @@ void Start()
     targetRect = Rect(80, -140, 40, 40);
     bulletPos.x = -999;
     score = 0;
+    PlayBGM("bgm_maoudamashii_8bit07.mp3");  // TODO: PlayBGM()関数を使って、BGMを再生する。(G)
 }
+
 
 // 1/60秒ごとに呼ばれる関数です。モデルの更新と画面の描画を行います。
 void Update()
@@ -34,6 +36,8 @@ void Update()
     // 弾の発射
     if (bulletPos.x <= -999 && Input::GetKeyDown(KeyMask::Space)) {
         bulletPos = cannonPos + Vector2(50, 10);
+          PlaySound("se_maoudamashii_explosion06.mp3");  // TODO: PlaySE()関数を使って、弾の発射時とターゲットに当たった時にSEを再生する。(H)
+        
     }
 
     // 弾の移動
@@ -45,6 +49,7 @@ void Update()
         if (targetRect.Overlaps(bulletRect)) {
             score += 1;         // スコアの加算
             bulletPos.x = -999; // 弾を発射可能な状態に戻す
+            PlaySound("se_maoudamashii_system27.mp3");  // TODO: PlaySE()関数を使って、弾の発射時とターゲットに当たった時にSEを再生する。(H)
         }
     }
 
@@ -71,5 +76,7 @@ void Update()
     SetFont("nicoca_v1.ttf", 20.0f);
     DrawText(FormatString("%02d", score), Vector2(-319, 199), Color::black);
     DrawText(FormatString("%02d", score), Vector2(-320, 200), Color::white);
-}
+
+    }
+
 
