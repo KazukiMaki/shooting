@@ -27,12 +27,12 @@ void Start()
     targetRect = Rect(280, -140, 40, 40);
     bulletPos.x = -999;
     score = 0;
-<<<<<<< HEAD
+//<<<<<<< HEAD
     cannon = 100;
     cannonCan = true;
-=======
+//=======
     PlayBGM("bgm_maoudamashii_8bit07.mp3");  // TODO: PlayBGM()関数を使って、BGMを再生する。(G)
->>>>>>> shooting/HW16A130
+//>>>>>>> shooting/HW16A130
 }
 
 
